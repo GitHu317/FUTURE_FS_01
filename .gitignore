@@ -1,0 +1,13 @@
+# Dependency folders
+node_modules/
+
+# Local environment variables (IMPORTANT: Protects your API keys)
+.env
+
+# Build folders
+dist/
+build/
+
+# Operating system files
+.DS_Store
+Thumbs.db
