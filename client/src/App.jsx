@@ -315,13 +315,13 @@ function App() {
                   </p>
               </form>
 
-              <div className="social-connect" style={{ marginTop: '40px', textAlign: 'center' }}>
-    <p>Find me on professional platforms:</p>
-    <div className="social-links" style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
-        <a href="https://github.com/GitHu317" target="_blank" rel="noreferrer" style={{ color: '#64ffda', textDecoration: 'none' }}>GitHub Profile</a>
-        <a href="https://www.linkedin.com/company/future-interns/" target="_blank" rel="noreferrer" style={{ color: '#64ffda', textDecoration: 'none' }}>LinkedIn</a>
-        <a href="/resume.pdf" download style={{ color: '#fff', border: '1px solid #fff', padding: '5px 15px', borderRadius: '4px', textDecoration: 'none' }}>Download Resume</a>
+     <div className="social-connect-mini">
+    <div className="social-links-mini">
+        <a href="https://github.com/GitHu317" target="_blank" rel="noreferrer">GitHub</a>
+        <span className="divider">/</span>
+        <a href="https://www.linkedin.com/company/future-interns/" target="_blank" rel="noreferrer">LinkedIn</a>
     </div>
+</div>
 </div>
           </section>
       </main>
