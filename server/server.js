@@ -6,9 +6,8 @@ require('dotenv').config();
 
 const app = express();
 
-// Initialize Resend using the key you provided
-// Note: In production, it's best to use process.env.RESEND_API_KEY
-const resend = new Resend('re_dkSsuziL_9FjuLUgCEgzPeAhipfAnQu3L');
+// Initialize Resend using environment variable
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 app.use(cors());
 app.use(express.json());
