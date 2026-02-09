@@ -184,23 +184,18 @@ function App() {
                 <div className="timeline-item">
                     <div className="timeline-dot"></div>
                     <div className="timeline-content">
-                        <h4>Student Developer</h4>
-                        <span className="date">2019 – Present</span>
-                        <p>
-                            A student at SSC 
-                            actively building projects, learning, and experimenting with new technologies.
-                        </p>
+<h4>Full Stack Intern</h4>
+                      <span className="date">Future Interns | 2026 – Present</span>
+                <p>Building real-world web applications and mastering the MERN stack through structured industry-level tasks.</p>
                     </div>
                 </div>
 
                 <div className="timeline-item">
                     <div className="timeline-dot"></div>
                     <div className="timeline-content">
-                        <h4>48-Hour Game Jam Winner</h4>
-                        <span className="date">2026</span>
-                        <p>
-                            Won a 48-hour global game jam by collaborating in a small team to develop a complete game.
-                        </p>
+                       <h4>My Goal</h4>
+                <span className="date">Future</span>
+<p>Aiming to become a Senior Product Engineer and business owner, leveraging new technologies to drive innovation.</p>
                     </div>
                 </div>
             </div>
@@ -320,7 +315,14 @@ function App() {
                   </p>
               </form>
 
-              
+              <div className="social-connect" style={{ marginTop: '40px', textAlign: 'center' }}>
+    <p>Find me on professional platforms:</p>
+    <div className="social-links" style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
+        <a href="https://github.com/GitHu317" target="_blank" rel="noreferrer" style={{ color: '#64ffda', textDecoration: 'none' }}>GitHub Profile</a>
+        <a href="https://www.linkedin.com/company/future-interns/" target="_blank" rel="noreferrer" style={{ color: '#64ffda', textDecoration: 'none' }}>LinkedIn</a>
+        <a href="/resume.pdf" download style={{ color: '#fff', border: '1px solid #fff', padding: '5px 15px', borderRadius: '4px', textDecoration: 'none' }}>Download Resume</a>
+    </div>
+</div>
           </section>
       </main>
     </div>
