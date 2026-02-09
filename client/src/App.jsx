@@ -89,9 +89,8 @@ function App() {
     }
 
     setStatus('Sending...');
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
     try {
-      const res = await axios.post(`${API_BASE_URL}/api/contact`, formData);
+      const res = await axios.post('https://future-fs-01-hevw.onrender.com/api/contact', formData);
       if(res.status === 201) {
           setStatus('Message sent successfully!');
           setFormData({ 
