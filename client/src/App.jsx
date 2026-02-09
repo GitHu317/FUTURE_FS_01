@@ -118,26 +118,26 @@ function App() {
             <h3>Connect With Me</h3>
             <p className="modal-subtitle">Feel free to reach out on any platform</p>
             <div className="modal-links">
-              <a href="mailto:lincolnalexyv@gmail.com" className="modal-link-item">
+              <a href="mailto:lincolnalexyv86@gmail.com" className="modal-link-item">
                 <span className="icon">📧</span>
                 <div className="link-text">
                   <strong>Gmail</strong>
-                  <span>lincolnalexyv@gmail.com</span>
+                  <span>lincolnalexyv86@gmail.com</span>
                 </div>
               </a>
-              <a href="https://github.com/lincolnalexyv" target="_blank" rel="noreferrer" className="modal-link-item">
+              <a href="https://github.com/GitHu317" target="_blank" rel="noreferrer" className="modal-link-item">
                 <span className="icon">💻</span>
                 <div className="link-text">
                   <strong>GitHub</strong>
-                  <span>github.com/lincolnalexyv</span>
+                  <span>https://github.com/GitHu317</span>
                 </div>
               </a>
               {/* Added Linden/LinkedIn as requested */}
-              <a href="https://linkedin.com/in/lincolnalexyv" target="_blank" rel="noreferrer" className="modal-link-item">
+              <a href="https://www.linkedin.com/in/lincoln-alexyv-ab3582380" target="_blank" rel="noreferrer" className="modal-link-item">
                 <span className="icon">🔗</span>
                 <div className="link-text">
                   <strong>LinkedIn</strong>
-                  <span>Lincoln Alexyv</span>
+                  <span>https://www.linkedin.com/in/lincoln-alexyv-ab3582380</span>
                 </div>
               </a>
             </div>
