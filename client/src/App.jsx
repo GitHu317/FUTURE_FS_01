@@ -17,9 +17,11 @@ function App() {
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('');
 
+  // NEW: State for the Contact Popup Modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   // CORRECTED SCROLL LOGIC
   // Scrollable area = Total Height (600vh) - Viewport (100vh) = 500vh
-  // We calculate the multipliers to land exactly in the middle of the active ranges defined in HeroCanvas.
   const navSections = [
     { id: 'text-1', label: 'Home', scrollIndex: 0 },         // 0%
     { id: 'text-2', label: 'Projects', scrollIndex: 1.75 },  // 35% of 500vh
@@ -108,6 +110,41 @@ function App() {
 
   return (
     <div className="scroll-container">
+      {/* NEW: Modal Popup Structure */}
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <button className="close-modal" onClick={() => setIsModalOpen(false)}>&times;</button>
+            <h3>Connect With Me</h3>
+            <p className="modal-subtitle">Feel free to reach out on any platform</p>
+            <div className="modal-links">
+              <a href="mailto:lincolnalexyv@gmail.com" className="modal-link-item">
+                <span className="icon">📧</span>
+                <div className="link-text">
+                  <strong>Gmail</strong>
+                  <span>lincolnalexyv@gmail.com</span>
+                </div>
+              </a>
+              <a href="https://github.com/lincolnalexyv" target="_blank" rel="noreferrer" className="modal-link-item">
+                <span className="icon">💻</span>
+                <div className="link-text">
+                  <strong>GitHub</strong>
+                  <span>github.com/lincolnalexyv</span>
+                </div>
+              </a>
+              {/* Added Linden/LinkedIn as requested */}
+              <a href="https://linkedin.com/in/lincolnalexyv" target="_blank" rel="noreferrer" className="modal-link-item">
+                <span className="icon">🔗</span>
+                <div className="link-text">
+                  <strong>LinkedIn</strong>
+                  <span>Lincoln Alexyv</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
       <nav className="glass-nav">
           <div className="nav-logo">LINCOLN<span>ALEXYV</span></div>
           
@@ -125,8 +162,8 @@ function App() {
 
           <div className="nav-actions">
               <button 
-                // Updated to 4.8 to land exactly on the Contact section
-                onClick={() => scrollToSection(4.8)} 
+                // Changed from scroll to opening the modal
+                onClick={() => setIsModalOpen(true)} 
                 className="nav-cta"
               >
                 Contact Me
@@ -141,7 +178,6 @@ function App() {
               <span className="kicker">Full Stack Developer</span>
               <h1>Lincoln Alexyv</h1>
               <p>I build interactive web applications and websites using various frameworks to make them engaging.</p>
-              {/* Updated scroll hint to point to Projects (1.75) */}
               <p className="scroll-hint" onClick={() => scrollToSection(1.75)} style={{cursor: 'pointer'}}>
                 ▼ SCROLL TO EXPLORE
               </p>
@@ -153,7 +189,8 @@ function App() {
               <div className="project-grid">
                   <div className="project-box">
                     <h3>01. Future Interns Portfolio</h3>
-<p>Task 1: A professional Full-Stack portfolio (this site) featuring smooth scrolling, 3D Canvas integration, and a Node.js contact handler.</p>                      <div className="tech-tags"><span>HTML</span> <span>CSS</span><span>JavaScript</span></div>
+                    <p>Task 1: A professional Full-Stack portfolio (this site) featuring smooth scrolling, 3D Canvas integration, and a Node.js contact handler.</p>
+                    <div className="tech-tags"><span>HTML</span> <span>CSS</span><span>JavaScript</span></div>
                   </div>
                   <div className="project-box">
                       <h3>02. STEMEDU</h3>
@@ -165,7 +202,7 @@ function App() {
 
           <section className="text-overlay" id="text-3">
               <span className="kicker">Capabilities</span>
-<h2>Core Competencies</h2>
+              <h2>Core Competencies</h2>
               <div className="skill-grid">
                   <span>React</span>
                   <span>Spring Boot</span>
@@ -184,7 +221,7 @@ function App() {
                 <div className="timeline-item">
                     <div className="timeline-dot"></div>
                     <div className="timeline-content">
-<h4>Full Stack Intern</h4>
+                        <h4>Full Stack Intern</h4>
                       <span className="date">Future Interns | 2026 – Present</span>
                       <p>Building real-world web applications and mastering full-stack development through structured industry-level tasks.</p>
                     </div>
@@ -195,7 +232,8 @@ function App() {
                     <div className="timeline-content">
                         <h4>My Goal</h4>
                         <span className="date">Future</span>
-<p>Building the next generation of AI-driven solutions to automate growth and scale modern businesses.</p>                    </div>
+                        <p>Building the next generation of AI-driven solutions to automate growth and scale modern businesses.</p>
+                    </div>
                 </div>
             </div>
           </section>
@@ -313,8 +351,6 @@ function App() {
                     {status}
                   </p>
               </form>
-
-              
           </section>
       </main>
     </div>
