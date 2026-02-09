@@ -11,8 +11,6 @@
 ## 🚀 Project Overview
 
 Welcome to my personal professional portfolio website!  
-This is not just a demo—it's the website recruiters and clients will visit before connecting with me.  
-Built to display what I can build, how I think as a developer, and how professionally I present myself.
 
 ---
 
