@@ -51,7 +51,19 @@ Inspired by the best on [Dribbble](https://dribbble.com), [Behance](https://www.
 - Designed for easy feature expansion (e.g., adding a blog or storing more user data)
 
 ---
+## 🔑 Environment Variables
 
+To run this project locally or deploy to Render, you must configure a `.env` file in the `/server` directory with the following variables:
+
+| Key | Description | Example Value |
+| :--- | :--- | :--- |
+| `PORT` | Port for the Express server 
+| `DB_HOST` | MySQL Hostname (Aiven/Local) 
+| `DB_USER` | Database Username 
+| `DB_PASSWORD`| Database Password 
+| `DB_NAME` | Database Name 
+| `DB_PORT` | MySQL Port
+| `RESEND_API_KEY`| API Key from Resend.com 
 ## 🗂️ Project Structure
 
 ```text
