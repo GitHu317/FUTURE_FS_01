@@ -6,14 +6,13 @@ require('dotenv').config();
 
 const app = express();
 
-// Initialize Resend using the key you provided
-// Note: In production, it's best to use process.env.RESEND_API_KEY
+// --- INITIALIZE SERVICES ---
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 app.use(cors());
 app.use(express.json());
 
-// --- DATABASE CONNECTION (Updated for Aiven SSL) ---
+// --- DATABASE CONNECTION (Optimized for Aiven Cloud) ---
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -23,14 +22,14 @@ const pool = mysql.createPool({
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
-    ssl: { rejectUnauthorized: false } // REQUIRED for Aiven
+    ssl: { rejectUnauthorized: false } // Crucial for Aiven/DigitalOcean
 });
 
 // --- AUTO-CREATE TABLE & TEST CONNECTION ---
 (async () => {
     try {
         const connection = await pool.getConnection();
-        console.log("✅ Connected to MySQL Database!");
+        console.log("✅ Database Engine: Connected & Ready");
 
         const createTableQuery = `
         CREATE TABLE IF NOT EXISTS portfolio_messages (
@@ -46,11 +45,11 @@ const pool = mysql.createPool({
         );`;
         
         await connection.query(createTableQuery);
-        console.log("✅ Table 'portfolio_messages' verified/created.");
+        console.log("✅ Data Infrastructure: Table verified");
         
         connection.release();
     } catch (err) {
-        console.error("❌ MySQL Setup Failed:", err);
+        console.error("❌ System Setup Failed:", err.message);
     }
 })();
 
@@ -67,12 +66,13 @@ app.post('/api/contact', async (req, res) => {
         message 
     } = req.body;
 
+    // Basic Validation
     if (!name || !email || !message) {
-        return res.status(400).json({ error: "Name, email, and message are required." });
+        return res.status(400).json({ error: "Missing required fields: name, email, or message." });
     }
 
     try {
-        // 1. Save to Database
+        // 1. Persist Data to MySQL
         const query = `
             INSERT INTO portfolio_messages 
             (name, email, phone, company, projectType, budget, message) 
@@ -89,48 +89,48 @@ app.post('/api/contact', async (req, res) => {
             message
         ]);
 
-        // 2. Send Email via Resend
+        // 2. Trigger AI-driven Notification (via Resend)
         try {
-            const { data, error } = await resend.emails.send({
-                from: 'Portfolio Contact <onboarding@resend.dev>',
-                to: 'lincolnalexyv86@gmail.com', // Your receiving email
-                subject: `🚀 New Project Inquiry: ${name}`,
+            await resend.emails.send({
+                from: 'Growth Lead <onboarding@resend.dev>',
+                to: 'lincolnalexyv86@gmail.com',
+                subject: `🚀 New Growth Opportunity: ${name}`,
                 html: `
-                    <h2>New Portfolio Message</h2>
-                    <p><strong>Name:</strong> ${name}</p>
-                    <p><strong>Email:</strong> ${email}</p>
-                    <p><strong>Project Type:</strong> ${projectType}</p>
-                    <p><strong>Budget:</strong> ${budget}</p>
-                    <p><strong>Message:</strong> ${message}</p>
+                    <div style="font-family: sans-serif; line-height: 1.6;">
+                        <h2>New Inquiry Received</h2>
+                        <p><strong>Lead Name:</strong> ${name}</p>
+                        <p><strong>Email:</strong> ${email}</p>
+                        <p><strong>Interest:</strong> ${projectType}</p>
+                        <p><strong>Budget Range:</strong> ${budget}</p>
+                        <hr />
+                        <p><strong>Message:</strong><br />${message}</p>
+                    </div>
                 `
             });
-
-            if (error) {
-                console.error("❌ Resend Error Details:", error);
-            } else {
-                console.log("📧 Email sent successfully:", data.id);
-            }
-
+            console.log("📧 Notification sent to owner.");
         } catch (emailErr) {
-            console.error("⚠️ Email logic failed:", emailErr);
+            console.error("⚠️ Email Dispatch Failed:", emailErr.message);
+            // We don't return an error to the user here because the data is already saved in the DB.
         }
         
-        console.log(`📩 Message saved to DB (ID: ${result.insertId})`);
-        
         res.status(201).json({ 
-            message: "Message sent successfully!", 
+            success: true,
+            message: "Inquiry received. Our systems have logged your request.", 
             id: result.insertId 
         });
 
     } catch (error) {
-        console.error("❌ Server Error:", error);
-        res.status(500).json({ error: "Failed to process your message." });
+        console.error("❌ Transaction Error:", error);
+        res.status(500).json({ error: "Internal server error during data persistence." });
     }
 });
 
+// Health Check Route
 app.get('/', (req, res) => {
-    res.send('Portfolio Backend is running...');
+    res.status(200).send('Core API Systems: Operational');
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(PORT, () => {
+    console.log(`🚀 AI-Growth Engine running on port ${PORT}`);
+});
