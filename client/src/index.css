@@ -283,46 +283,4 @@ button.nav-cta {
     input, select {
         padding: 0.8rem;
     }
-}/* SUPER COMPACT SOCIALS */
-.social-connect-mini {
-    margin-top: 20px;
-    padding: 10px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.social-links-mini {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-family: monospace;
-    font-size: 0.75rem; /* Very small */
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.social-links-mini a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.social-links-mini a:hover {
-    color: var(--accent);
-}
-
-.divider {
-    color: #333;
-    user-select: none;
-}
-
-/* Adjusting the contact section to accommodate the smaller footer */
-#text-5 {
-    justify-content: center;
-    padding-bottom: 20px;
-}
-
-.contact-form {
-    gap: 0.5rem; /* Tighter form spacing */
 }
