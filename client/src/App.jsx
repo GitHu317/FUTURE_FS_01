@@ -151,11 +151,12 @@ function App() {
               <span className="kicker">Portfolio</span>
               <h2>Featured Projects</h2>
               <div className="project-grid">
-                  <div className="project-box">
-                      <h3>01. Business Club</h3>
-                      <p>A custom school club website with member registration and search functionality.</p>
-                      <div className="tech-tags"><span>HTML</span> <span>CSS</span><span>JavaScript</span></div>
-                  </div>
+                <div className="project-box" style={{ border: '1px solid #64ffda' }}>
+            <h3>01. Future Interns Portfolio</h3>
+            <p>Task 1: A professional Full-Stack portfolio (this site) featuring smooth scrolling, 3D Canvas integration, and a Node.js contact handler.</p>
+            <div className="tech-tags"><span>React</span> <span>Node.js</span> <span>Three.js</span></div>
+            <a href="https://github.com/GitHu317/FUTURE_FS_01" target="_blank" rel="noreferrer" className="project-link">View Repository →</a>
+        </div>
                   <div className="project-box">
                       <h3>02. STEMEDU</h3>
                       <p>Interactive e-learning websites that teach science and technology courses with quizzes and assignments.</p>
