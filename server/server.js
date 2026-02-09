@@ -1,36 +1,59 @@
 const express = require('express');
 const mysql = require('mysql2/promise'); 
 const cors = require('cors');
-const { Resend } = require('resend'); //
+const { Resend } = require('resend');
 require('dotenv').config();
 
 const app = express();
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Initialize Resend (Optional: Only works if you have a RESEND_API_KEY in .env)
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 app.use(cors());
 app.use(express.json());
 
+// --- DATABASE CONNECTION (Updated for Aiven SSL) ---
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
-    password: process.env.DB_PASS,
+    password: process.env.DB_PASSWORD, // Make sure this matches your .env key
     database: process.env.DB_NAME,
+    port: process.env.DB_PORT || 18980,
     waitForConnections: true,
     connectionLimit: 10,
-    queueLimit: 0
+    queueLimit: 0,
+    ssl: { rejectUnauthorized: false } // REQUIRED for Aiven
 });
 
+// --- AUTO-CREATE TABLE & TEST CONNECTION ---
 (async () => {
     try {
         const connection = await pool.getConnection();
         console.log("✅ Connected to MySQL Database!");
+
+        const createTableQuery = `
+        CREATE TABLE IF NOT EXISTS portfolio_messages (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL,
+            phone VARCHAR(50),
+            company VARCHAR(255),
+            projectType VARCHAR(100) DEFAULT 'General',
+            budget VARCHAR(100) DEFAULT 'Not Specified',
+            message TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );`;
+        
+        await connection.query(createTableQuery);
+        console.log("✅ Table 'portfolio_messages' verified/created.");
+        
         connection.release();
     } catch (err) {
-        console.error("❌ MySQL Connection Failed:", err);
+        console.error("❌ MySQL Setup Failed:", err);
     }
 })();
 
+// --- API ROUTES ---
 
 app.post('/api/contact', async (req, res) => {
     const { 
@@ -48,8 +71,9 @@ app.post('/api/contact', async (req, res) => {
     }
 
     try {
+        // 1. Save to Database
         const query = `
-            INSERT INTO messages 
+            INSERT INTO portfolio_messages 
             (name, email, phone, company, projectType, budget, message) 
             VALUES (?, ?, ?, ?, ?, ?, ?)
         `;
@@ -64,26 +88,28 @@ app.post('/api/contact', async (req, res) => {
             message
         ]);
 
-      
-        await resend.emails.send({
-            from: 'Portfolio Contact <onboarding@resend.dev>',
-            to: 'lincolnalexyv86@gmail.com',
-            subject: `🚀 New Project Inquiry: ${name}`,
-            html: `
-                <h2>You have a new message from your portfolio!</h2>
-                <p><strong>Name:</strong> ${name}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
-                <p><strong>Company:</strong> ${company || 'N/A'}</p>
-                <p><strong>Project Type:</strong> ${projectType}</p>
-                <p><strong>Budget:</strong> ${budget}</p>
-                <hr />
-                <p><strong>Message:</strong></p>
-                <p>${message}</p>
-            `
-        });
+        // 2. Send Email via Resend (Only if API Key exists)
+        if (resend) {
+            try {
+                await resend.emails.send({
+                    from: 'Portfolio Contact <onboarding@resend.dev>',
+                    to: 'lincolnalexyv86@gmail.com',
+                    subject: `🚀 New Project Inquiry: ${name}`,
+                    html: `
+                        <h2>New Portfolio Message</h2>
+                        <p><strong>Name:</strong> ${name}</p>
+                        <p><strong>Email:</strong> ${email}</p>
+                        <p><strong>Project Type:</strong> ${projectType}</p>
+                        <p><strong>Message:</strong> ${message}</p>
+                    `
+                });
+                console.log("📧 Email sent successfully");
+            } catch (emailErr) {
+                console.error("⚠️ Email failed to send, but data was saved to DB.");
+            }
+        }
         
-        console.log(`📩 Message saved to DB (ID: ${result.insertId}) and Email sent for ${name}`);
+        console.log(`📩 Message saved to DB (ID: ${result.insertId})`);
         
         res.status(201).json({ 
             message: "Message sent successfully!", 
@@ -94,6 +120,11 @@ app.post('/api/contact', async (req, res) => {
         console.error("❌ Server Error:", error);
         res.status(500).json({ error: "Failed to process your message." });
     }
+});
+
+// Handle the root path to avoid "Cannot GET /"
+app.get('/', (req, res) => {
+    res.send('Portfolio Backend is running...');
 });
 
 const PORT = process.env.PORT || 5000;
