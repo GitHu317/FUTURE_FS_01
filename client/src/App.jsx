@@ -152,8 +152,9 @@ function App() {
               <h2>Featured Projects</h2>
               <div className="project-grid">
                   <div className="project-box">
-<h3>01. Future Interns Portfolio</h3>
-<p>Task 1: A professional Full-Stack portfolio (this site) featuring smooth scrolling, 3D Canvas integration, and a Node.js contact handler.</p>                      <div className="tech-tags"><span>HTML</span> <span>React</span><span>Nodejs</span></div>
+                      <h3>01. Business Club</h3>
+                      <p>A custom school club website with member registration and search functionality.</p>
+                      <div className="tech-tags"><span>HTML</span> <span>CSS</span><span>JavaScript</span></div>
                   </div>
                   <div className="project-box">
                       <h3>02. STEMEDU</h3>
@@ -184,18 +185,23 @@ function App() {
                 <div className="timeline-item">
                     <div className="timeline-dot"></div>
                     <div className="timeline-content">
-<h4>Full Stack Intern</h4>
-                      <span className="date">Future Interns | 2026 – Present</span>
-                <p>Building real-world web applications and mastering the MERN stack through structured industry-level tasks.</p>
+                        <h4>Student Developer</h4>
+                        <span className="date">2019 – Present</span>
+                        <p>
+                            A student at SSC 
+                            actively building projects, learning, and experimenting with new technologies.
+                        </p>
                     </div>
                 </div>
 
                 <div className="timeline-item">
                     <div className="timeline-dot"></div>
                     <div className="timeline-content">
-                       <h4>My Goal</h4>
-                <span className="date">Future</span>
-<p>Aiming to become a Senior Product Engineer and business owner, leveraging new technologies to drive innovation.</p>
+                        <h4>48-Hour Game Jam Winner</h4>
+                        <span className="date">2026</span>
+                        <p>
+                            Won a 48-hour global game jam by collaborating in a small team to develop a complete game.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -315,14 +321,7 @@ function App() {
                   </p>
               </form>
 
-     <div className="social-connect-mini">
-    <div className="social-links-mini">
-        <a href="https://github.com/GitHu317" target="_blank" rel="noreferrer">GitHub</a>
-        <span className="divider">/</span>
-        <a href="https://www.linkedin.com/company/future-interns/" target="_blank" rel="noreferrer">LinkedIn</a>
-    </div>
-</div>
-</div>
+              
           </section>
       </main>
     </div>
