@@ -90,7 +90,7 @@ function App() {
 
     setStatus('Sending...');
     try {
-      const res = await axios.post('http://localhost:5000/api/contact', formData);
+      const res = await axios.post('https://future-fs-01-hevw.onrender.com/api/contact', formData);
       if(res.status === 201) {
           setStatus('Message sent successfully!');
           setFormData({ 
