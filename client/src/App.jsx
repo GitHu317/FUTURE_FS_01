@@ -23,7 +23,7 @@ function App() {
   const navSections = [
     { id: 'text-1', label: 'Home', scrollIndex: 0 },         // 0%
     { id: 'text-2', label: 'Projects', scrollIndex: 1.75 },  // 35% of 500vh
-    { id: 'text-3', label: 'Skills', scrollIndex: 3.25 },    // 65% of 500vh
+    { id: 'text-3', label: 'About', scrollIndex: 3.25 },    // 65% of 500vh
     { id: 'text-4', label: 'Experience', scrollIndex: 4.25 },// 85% of 500vh
     { id: 'text-5', label: 'Contact', scrollIndex: 4.8 },    // 96% of 500vh
   ];
@@ -158,7 +158,7 @@ function App() {
                   <div className="project-box">
                       <h3>02. STEMEDU</h3>
                       <p>Interactive e-learning websites that teach science and technology courses with quizzes and assignments.</p>
-                      <div className="tech-tags"><span>HTML</span> <span>CSS</span><span>JavaScript</span></div>
+                      <div className="tech-tags"><span>HTML</span> <span>React</span><span>NodeJS</span></div>
                   </div>
               </div>
           </section>
@@ -186,7 +186,7 @@ function App() {
                     <div className="timeline-content">
 <h4>Full Stack Intern</h4>
                       <span className="date">Future Interns | 2026 – Present</span>
-                      <p>Building real-world web applications and mastering the MERN stack through structured industry-level tasks.</p>
+                      <p>Building real-world web applications and mastering full-stack development through structured industry-level tasks.</p>
                     </div>
                 </div>
 
