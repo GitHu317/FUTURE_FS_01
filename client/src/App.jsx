@@ -125,16 +125,11 @@ function App() {
 
           <div className="nav-actions">
               <button 
+                // Updated to 4.8 to land exactly on the Contact section
+                onClick={() => scrollToSection(4.8)} 
                 className="nav-cta"
               >
-                <a href="https://www.linkedin.com/in/lincoln-alexyv-ab3582380/" style="text-decoration:none;">Linkdin</a>
-                
-              </button>
-             <button 
-                className="nav-cta"
-              >
-                <a href="https://github.com/GitHu317"  style="text-decoration:none;">Github</a>
-                
+                Contact Me
               </button>
           </div>
       </nav>
