@@ -53,15 +53,15 @@ Inspired by the best on [Dribbble](https://dribbble.com), [Behance](https://www.
 
 To run this project locally or deploy to Render, you must configure a `.env` file in the `/server` directory with the following variables:
 
-| Key | Description | Example Value |
+| Key | Description | Random Example Value |
 | :--- | :--- | :--- |
-| `PORT` | Port for the Express server 
-| `DB_HOST` | MySQL Hostname (Aiven/Local) 
-| `DB_USER` | Database Username 
-| `DB_PASSWORD`| Database Password 
-| `DB_NAME` | Database Name 
-| `DB_PORT` | MySQL Port
-| `RESEND_API_KEY`| API Key from Resend.com 
+| `PORT` | Port for the Express server | `8080` |
+| `DB_HOST` | Database Hostname | `db-cluster-99.provider.net` |
+| `DB_USER` | Database Username | `admin_user_x` |
+| `DB_PASSWORD`| Database Password | `p@ssw0rd_Str0ng_99` |
+| `DB_NAME` | Database Name | `app_production_db` |
+| `DB_PORT` | Connection Port | `3306` |
+| `RESEND_API_KEY`| API Key for Email | `re_xyz_9876543210abc` |
 ## 🗂️ Project Structure
 
 ```text
