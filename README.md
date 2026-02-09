@@ -118,24 +118,11 @@ FUTURE_FS_01/
 
 ## 📦 Real-World Motivation
 
-I built this as my "real" portfolio site—not just for an internship, but as my digital resume and proof of work for recruiters, clients, and hiring managers.  
+I built this as my "real" portfolio site—not just for an internship, but to develope my skills as well.  
 - All examples, projects, and skills are real
 - Descriptions are honest and up-to-date
 - Developed with production-ready tools and professional rigor
 
----
-
-## 📢 Showcase
-
-- **Push your code to GitHub** (✓ Done!)
-- **Share on LinkedIn, tag [Future Interns](https://www.linkedin.com/company/future-interns/)**
-
----
-
-> Many developers get interviews only because their portfolio impresses someone.  
-> Treat your site as your digital business card!
-
----
 
 ## 🙏 Thanks & Credits
 
